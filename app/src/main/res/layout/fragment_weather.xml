@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    tools:context=".ui.activity.MainActivity$PlaceholderFragment">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="8 ºC"
+        android:textSize="20pt"
+        android:id="@+id/txtCurrentWeather"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="99dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Paris, France"
+        android:textSize="18pt"
+        android:id="@+id/txtCityAndCountry"
+        android:layout_below="@+id/txtCurrentWeather"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="91dp" />
+</RelativeLayout>

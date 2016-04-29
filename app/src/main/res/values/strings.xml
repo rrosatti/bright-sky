@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Bright Sky</string>
+
+    <!--  Open Weather Maps API -> KEY  -->
+    <string name="open_weather_maps_app_id">abd0af2eb33faa529937a627840a1769</string>
+
+    <!--  Menu items -->
+    <string name="choose_city">Choose City</string>
+
+</resources>
