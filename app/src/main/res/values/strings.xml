@@ -7,4 +7,7 @@
     <!--  Menu items -->
     <string name="choose_city">Choose City</string>
 
+    <!--  Toast messages -->
+    <string name="city_not_found">City not found</string>
+
 </resources>
