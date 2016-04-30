@@ -23,7 +23,7 @@ public class CityPreference {
         return sharedPreferences.getString("city", "São Paulo, BR");
     }
 
-    void setCity(String city) {
+    public void setCity(String city) {
         sharedPreferences.edit().putString("city", city).commit();
     }
 }
