@@ -42,7 +42,7 @@ public class RemoteFetch {
             JSONObject data = new JSONObject(json.toString());
 
             /**
-             * 200 - successful request
+             * w200 - successful request
              * 404 - unsuccessful request
              */
             if (data.getInt("cod") != 200) {

@@ -13,11 +13,13 @@ import android.widget.RelativeLayout;
 import com.example.rodri.brightsky.R;
 import com.example.rodri.brightsky.ui.CityPreference;
 import com.example.rodri.brightsky.ui.fragment.WeatherFragment;
+import com.example.rodri.brightsky.ui.util.Util;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Util.setFullScreen(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 

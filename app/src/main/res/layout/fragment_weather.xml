@@ -1,27 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    tools:context=".ui.activity.MainActivity$PlaceholderFragment">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.25"
+        android:background="#303633">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent" android:layout_height="match_parent"
+            tools:context=".ui.activity.MainActivity$PlaceholderFragment">
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="8 ºC"
-        android:textSize="20pt"
-        android:id="@+id/txtCurrentWeather"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="99dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8 ºC"
+                android:textSize="22pt"
+                android:textColor="#FFF"
+                android:id="@+id/txtCurrentWeather"
+                android:layout_marginTop="40dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Paris, France"
-        android:textSize="18pt"
-        android:id="@+id/txtCityAndCountry"
-        android:layout_below="@+id/txtCurrentWeather"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="91dp" />
-</RelativeLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtCurrentWeather"
+                android:layout_marginTop="20pt"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/imgWeatherIcon" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.75"
+        android:background="#FFF">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Paris, France"
+            android:textSize="17pt"
+            android:textColor="#303633"
+            android:id="@+id/txtCityAndCountry"
+            android:paddingTop="18dp"
+            android:gravity="center_horizontal"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Last update: Jul 2, 2014 3:30:00 AM"
+            android:textSize="8pt"
+            android:textColor="#303633"
+            android:id="@+id/txtLastUpdate"
+            android:paddingTop="5dp"
+            android:gravity="center_horizontal"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
