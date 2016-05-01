@@ -6,6 +6,6 @@
         android:id="@+id/chooseCity"
         android:title="@string/choose_city"
         android:icon="@drawable/update_icon"
-        app:showAsAction="always"></item>
+        app:showAsAction="always" />
 
 </menu>
