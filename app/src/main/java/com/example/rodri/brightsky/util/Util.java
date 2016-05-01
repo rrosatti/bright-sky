@@ -1,4 +1,4 @@
-package com.example.rodri.brightsky.ui.util;
+package com.example.rodri.brightsky.util;
 
 import android.app.Activity;
 import android.view.Window;

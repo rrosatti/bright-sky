@@ -5,12 +5,23 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <include
+        android:id="@+id/customToolBar"
+        layout="@layout/custom_toolbar"/>
+
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0.25"
-        android:background="#303633">
+        android:background="@color/theme">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="3dp"
+            android:background="#FFF"/>
 
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
@@ -35,7 +46,8 @@
                 android:layout_below="@+id/txtCurrentWeather"
                 android:layout_marginTop="20pt"
                 android:layout_centerHorizontal="true"
-                android:id="@+id/imgWeatherIcon" />
+                android:id="@+id/imgWeatherIcon"
+                android:layout_marginBottom="20dp"/>
 
         </RelativeLayout>
 
@@ -54,8 +66,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Paris, France"
-            android:textSize="17pt"
-            android:textColor="#303633"
+            android:textSize="18pt"
+            android:textColor="@color/theme"
             android:id="@+id/txtCityAndCountry"
             android:paddingTop="18dp"
             android:gravity="center_horizontal"/>
@@ -65,7 +77,7 @@
             android:layout_height="wrap_content"
             android:text="Last update: Jul 2, 2014 3:30:00 AM"
             android:textSize="8pt"
-            android:textColor="#303633"
+            android:textColor="@color/theme"
             android:id="@+id/txtLastUpdate"
             android:paddingTop="5dp"
             android:gravity="center_horizontal"/>

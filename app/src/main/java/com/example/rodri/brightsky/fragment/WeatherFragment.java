@@ -1,6 +1,7 @@
-package com.example.rodri.brightsky.ui.fragment;
+package com.example.rodri.brightsky.fragment;
 
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,7 +12,7 @@ import android.widget.TextView;
 
 import com.example.rodri.brightsky.R;
 import com.example.rodri.brightsky.ui.CityPreference;
-import com.example.rodri.brightsky.ui.json.RemoteFetch;
+import com.example.rodri.brightsky.json.RemoteFetch;
 
 import android.os.Handler;
 import android.widget.Toast;
@@ -32,6 +33,8 @@ public class WeatherFragment extends Fragment {
     TextView txtCityAndCountry;
     TextView txtLastUpdate;
     ImageView imgWeatherIcon;
+    Typeface typefaceRegular;
+    Typeface typefaceBold;
     /** handler will be used to use a separate Thread to fetch data from the OpenWeatherMap API (asynchronously) */
     Handler handler;
 
@@ -46,6 +49,12 @@ public class WeatherFragment extends Fragment {
         txtCityAndCountry = (TextView) rootView.findViewById(R.id.txtCityAndCountry);
         txtLastUpdate = (TextView) rootView.findViewById(R.id.txtLastUpdate);
         imgWeatherIcon = (ImageView) rootView.findViewById(R.id.imgWeatherIcon);
+
+        typefaceRegular = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Quicksand-Regular.otf");
+        typefaceBold = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Quicksand-Bold.otf");
+        txtCityAndCountry.setTypeface(typefaceBold);
+        txtCurrentWeather.setTypeface(typefaceBold);
+        txtLastUpdate.setTypeface(typefaceRegular);
 
         return rootView;
     }

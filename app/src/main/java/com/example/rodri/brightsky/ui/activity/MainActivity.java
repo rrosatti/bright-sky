@@ -1,38 +1,57 @@
 package com.example.rodri.brightsky.ui.activity;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.InputType;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.rodri.brightsky.R;
 import com.example.rodri.brightsky.ui.CityPreference;
-import com.example.rodri.brightsky.ui.fragment.WeatherFragment;
-import com.example.rodri.brightsky.ui.util.Util;
+import com.example.rodri.brightsky.fragment.WeatherFragment;
+import com.example.rodri.brightsky.util.Util;
 
 public class MainActivity extends AppCompatActivity {
+
+    ImageView imgChangeCity;
+    TextView txtToolBarTittle;
+    Typeface typeface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Util.setFullScreen(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setCustomToolBar();
 
         if(savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().add(R.id.container, new WeatherFragment()).commit();
         }
 
+        imgChangeCity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "HEY!", Toast.LENGTH_LONG).show();
+            }
+        });
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.weather_menu, menu);
-        RelativeLayout menuLayout = (RelativeLayout) menu.findItem(R.id.chooseCity).getActionView();
+        //getMenuInflater().inflate(R.menu.weather_menu, menu);
+        //RelativeLayout menuLayout = (RelativeLayout) menu.findItem(R.id.chooseCity).getActionView();
 
         return true;
     }
@@ -78,5 +97,17 @@ public class MainActivity extends AppCompatActivity {
         WeatherFragment weatherFragment = (WeatherFragment) getSupportFragmentManager().findFragmentById(R.id.container);
         weatherFragment.changeCity(city);
         new CityPreference(this).setCity(city);
+    }
+
+    public void setCustomToolBar() {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View v = inflater.inflate(R.layout.fragment_weather, null);
+        Toolbar toolbar = (Toolbar) v.findViewById(R.id.customToolBar);
+        setSupportActionBar(toolbar);
+        imgChangeCity = (ImageView) toolbar.findViewById(R.id.imgChangeCity);
+        txtToolBarTittle = (TextView) toolbar.findViewById(R.id.txtToolBarTitle);
+        typeface = Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Bold.otf");
+        txtToolBarTittle.setTypeface(typeface);
+
     }
 }

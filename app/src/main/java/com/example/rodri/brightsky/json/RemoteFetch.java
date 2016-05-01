@@ -1,4 +1,4 @@
-package com.example.rodri.brightsky.ui.json;
+package com.example.rodri.brightsky.json;
 
 import android.content.Context;
 
