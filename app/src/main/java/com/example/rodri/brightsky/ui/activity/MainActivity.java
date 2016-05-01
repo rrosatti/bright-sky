@@ -1,33 +1,42 @@
 package com.example.rodri.brightsky.ui.activity;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.text.InputType;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.rodri.brightsky.R;
+import com.example.rodri.brightsky.city.City;
+import com.example.rodri.brightsky.database.CityDataSource;
 import com.example.rodri.brightsky.ui.CityPreference;
 import com.example.rodri.brightsky.fragment.WeatherFragment;
+import com.example.rodri.brightsky.ui.widget.CustomAutoCompleteView;
+import com.example.rodri.brightsky.ui.widget.CustomAutoCompleteViewChangedListener;
 import com.example.rodri.brightsky.util.Util;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     ImageView imgChangeCity;
     TextView txtToolBarTittle;
     Typeface typeface;
+
+    public CustomAutoCompleteView input;
+    CityDataSource dataSource;
+    public ArrayAdapter<String> adapter;
+    public String[] cities = new String[] { "type a city..." };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +78,11 @@ public class MainActivity extends AppCompatActivity {
     private void showInputDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Choose a city");
-        final EditText input = new EditText(this);
+        input = new CustomAutoCompleteView(this);
         input.setInputType(InputType.TYPE_CLASS_TEXT);
+        input.addTextChangedListener(new CustomAutoCompleteViewChangedListener(this));
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, cities);
+        input.setAdapter(adapter);
         builder.setView(input);
         builder.setPositiveButton("Go", new DialogInterface.OnClickListener() {
             @Override
@@ -93,15 +105,32 @@ public class MainActivity extends AppCompatActivity {
         new CityPreference(this).setCity(city);
     }
 
-    public void setCustomToolBar() {
-        /**LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View v = inflater.inflate(R.layout.fragment_weather, null);
-        Toolbar toolbar = (Toolbar) v.findViewById(R.id.customToolBar);
-        setSupportActionBar(toolbar);
-        imgChangeCity = (ImageView) toolbar.findViewById(R.id.imgChangeCity);
-        txtToolBarTittle = (TextView) toolbar.findViewById(R.id.txtToolBarTitle);
-        typeface = Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Bold.otf");
-        txtToolBarTittle.setTypeface(typeface);*/
+    public String[] getCitiesFromDB(String searchCity) {
+        dataSource = new CityDataSource(MainActivity.this);
+        try {
+            dataSource.open();
+
+            List<City> citiesFound = dataSource.searchCities(searchCity);
+            int count = citiesFound.size();
+
+            String[] cities = new String[count];
+            int i = 0;
+
+            for (City city : citiesFound) {
+                cities[i] = city.getName();
+                i++;
+            }
+
+            return cities;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        dataSource.close();
+
+        return null;
 
     }
+
 }
