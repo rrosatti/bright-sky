@@ -27,7 +27,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="8 ºC"
+                android:text="0.00 ºC"
                 android:textSize="22pt"
                 android:textColor="#FFF"
                 android:id="@+id/txtCurrentWeather"
@@ -42,6 +42,7 @@
                 android:layout_marginTop="20pt"
                 android:layout_centerHorizontal="true"
                 android:id="@+id/imgWeatherIcon"
+                android:src="@drawable/w900_plus"
                 android:layout_marginBottom="20dp"/>
 
         </RelativeLayout>
@@ -60,7 +61,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Paris, France"
+            android:text="Wonderland, BR"
             android:textSize="18pt"
             android:textColor="@color/theme"
             android:id="@+id/txtCityAndCountry"
@@ -70,7 +71,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Last update: Jul 2, 2014 3:30:00 AM"
+            android:text="Sorry Dave, I'm afraid I can't do that"
             android:textSize="8pt"
             android:textColor="@color/theme"
             android:id="@+id/txtLastUpdate"

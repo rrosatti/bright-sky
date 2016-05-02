@@ -54,7 +54,7 @@ public class CityDataSource {
 
     public boolean findCity(String name) {
         Cursor cursor = database.rawQuery("SELECT * FROM " + helper.TABLE_CITY + " WHERE "
-                + helper.COLUMN_NAME + " = " + name, null);
+                + helper.COLUMN_NAME + " = '" + name +"'", null);
 
         if (cursor != null) {
             if (cursor.getCount() > 0)
@@ -69,7 +69,7 @@ public class CityDataSource {
 
         String sql = "SELECT * FROM " + helper.TABLE_CITY + " WHERE "
                 + helper.COLUMN_NAME + " LIKE '%" + cityTerm + "%'"
-                + " ORDER BY " + helper.COLUMN_ID + " DESC LIMIT 0,4";
+                + " ORDER BY " + helper.COLUMN_ID + " DESC LIMIT 0,3";
 
         Cursor cursor = database.rawQuery(sql, null);
 

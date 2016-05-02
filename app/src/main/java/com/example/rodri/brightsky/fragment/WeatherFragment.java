@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.rodri.brightsky.R;
+import com.example.rodri.brightsky.database.CityDataSource;
 import com.example.rodri.brightsky.ui.CityPreference;
 import com.example.rodri.brightsky.json.RemoteFetch;
 
@@ -20,6 +21,7 @@ import android.support.v4.app.Fragment;
 
 import org.json.JSONObject;
 
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -37,6 +39,9 @@ public class WeatherFragment extends Fragment {
     Typeface typefaceBold;
     /** handler will be used to use a separate Thread to fetch data from the OpenWeatherMap API (asynchronously) */
     Handler handler;
+
+    /** dataSource will be used to save the user searched city */
+    CityDataSource dataSource;
 
     public WeatherFragment() {
         handler = new Handler();
@@ -81,12 +86,27 @@ public class WeatherFragment extends Fragment {
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
+                            saveCityIntoDB(city);
                             renderWeather(json);
                         }
                     });
                 }
             }
         }.start();
+    }
+
+    private void saveCityIntoDB(String city) {
+        dataSource = new CityDataSource(getActivity());
+        try {
+            dataSource.open();
+
+            if(!dataSource.findCity(city)){
+                dataSource.createCity(city);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     private void renderWeather(JSONObject json) {
